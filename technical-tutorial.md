@@ -1,18 +1,18 @@
 # Controlling Disco Lights
 
-Seam makes it easy to control hardware with code. In this guide, you'll use the Seam API to control disco lights by listing all available lights, selecting one, and adjusting its color, brightness, and mode to match your event's energy.
+Seam makes it easy to control hardware with code. This guide shows you how to use the Seam API to control your disco lights. You'll learn how to list available lights, select one, and adjust its color, brightness, and mode to match your event's energy.
 
 ## Prerequisites
 
 Before diving in, make sure you've completed the following setup.
 
-- Ensure your disco lights are online and connected to your Seam account via the [Seam Dashboard](https://console.seam.co/)
+- Ensure your disco lights are online and [connected](https://docs.seam.co/guides/setup-disco-lights-in-dashboard) to your Seam account via the [Seam Dashboard](https://console.seam.co/)
 - Install the [Seam Python SDK](https://pypi.org/project/seam/) 
 - [Authenticate](https://docs.seam.co/latest/core-concepts/authentication) with the Seam API using your API key
 
 ## 1. List All Disco Lights
 
-Retrieve all disco lights connected to your account using [`seam.disco_lights.list()`](https://docs.seam.co/api/disco-lights/list-disco-lights).
+Start by retrieving all disco lights connected to your account using [`seam.disco_lights.list()`](https://docs.seam.co/api/disco-lights/list-disco-lights).
 
 ```python
 import seam
@@ -36,8 +36,7 @@ This method returns an array of [`DiscoLight`](https://docs.seam.co/api/DiscoLig
       "brightness": 80,
       "color": "#FF00FF",
       "mode": "solid"
-    }, 
-    // ...
+    }
   ]
 }
 ```
@@ -112,7 +111,7 @@ seam.disco_lights.set_color({
 
 After making changes to your disco light, it's good practice to confirm that they were applied successfully. You can do this by retrieving the updated light state and checking the key values.
 
-The following example assumes you've turned the light on and set brightness to 60.
+The example below assumes you've just turned the light on and set its brightness to 60.
 
 ```python
 # Step 1: Retrieve updated light state
@@ -127,13 +126,13 @@ In addition to code-based assertions, you can also visually confirm that your li
 
 ## Congratulations!
 
-You've just built a working integration with the Seam Disco Lights API! 🎉 From discovering devices to adjusting colors, brightness, and modes, you now have everything you need to control the vibe of any venue with code.
+You've just built a working integration with the Seam Disco Lights API! 🎉 
 
-Whether you're automating mood lighting or syncing lights to live events, you've covered the core building blocks.
+From discovering devices to adjusting colors, brightness, and modes, you've laid the groundwork for controlling the vibe of any venue with code.
 
 ## Next Steps
 
-Now that you’ve got the basics, try customizing your setup for different event scenarios, device names, or venue zones.
+With the basics in place, try customizing your setup for different event scenarios, device names, or venue zones.
 
 For instance, you can apply different behaviors based on the name of the light. You might set all stage lights to a bold color while dimming the rest.
 
@@ -143,7 +142,7 @@ all_lights = seam.disco_lights.list()["disco_lights"]
 for light in all_lights:
     device_id = light["device_id"]
 
-    if "stage" in light["name"].lower():
+    if "stage" in light["name"].lower():  # case-insensitive match
         seam.disco_lights.on({ "device_id": device_id })
         seam.disco_lights.set_mode({ "device_id": device_id, "mode": "solid" })
         seam.disco_lights.set_color({ "device_id": device_id, "hex": "#FF00FF" })  # magenta
