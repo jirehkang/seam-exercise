@@ -1,6 +1,6 @@
 # Controlling Disco Lights
 
-Seam makes it easy to control hardware with code. This guide shows you how to use the Seam API to control your disco lights. You'll learn how to list available lights, select one, and adjust its color, brightness, and mode to match your event's energy.
+Seam makes it easy to manage hardware with code. This guide shows you how to use the Seam API to control your disco lights. You'll learn how to list available lights, select one, and adjust its color, brightness, and mode to match your event's energy.
 
 ## Prerequisites
 
